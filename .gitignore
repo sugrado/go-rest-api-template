@@ -1,5 +1,4 @@
 .idea/
 .vscode/
-dev.env
+.env
 prod.env
-docker-compose.prod.yml

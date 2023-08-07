@@ -3,10 +3,10 @@ version: "3.9"
 services:
   postgresql:
     container_name: tama-db
-    env_file:
-      - dev.env
     image: postgres:15.3
     restart: on-failure
+    env_file:
+      - dev.env
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USERNAME}
@@ -30,5 +30,11 @@ services:
     depends_on:
       postgresql:
         condition: service_healthy
+    security_opt:
+      - "seccomp:unconfined"
+    cap_add:
+      - SYS_PTRACE
+    command: /dlv --headless --listen=:40000 --api-version=2 exec /tama
     ports:
       - "3008:3008"
+      - "40000:40000"

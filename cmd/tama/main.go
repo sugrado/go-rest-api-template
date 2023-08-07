@@ -20,7 +20,7 @@ func main() {
 		IdleTimeout:    time.Second * 60,
 	}
 
-	fmt.Println(fmt.Sprintf("TAMA Server is up and running on '%s' in '%s' mode", cfg.Server.Port, cfg.Server.Environment))
+	fmt.Println(fmt.Sprintf("Running on: '%s' \nEnvironment: '%s'", cfg.Server.Port, cfg.Server.Environment))
 	if err := srv.ListenAndServe(); err != nil {
 		log.Fatalf("failed to start server: %v", err)
 	}

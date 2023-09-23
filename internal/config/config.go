@@ -28,7 +28,7 @@ type DatabaseConfiguration struct {
 	Password string
 }
 
-func Load() (*Configuration, error) {
+func Load() *Configuration {
 	configuration = &Configuration{
 		Server: ServerConfiguration{
 			Port:                   os.Getenv("SERVER_PORT"),
@@ -46,5 +46,5 @@ func Load() (*Configuration, error) {
 			Password: os.Getenv("DB_PASSWORD"),
 		},
 	}
-	return configuration, nil
+	return configuration
 }

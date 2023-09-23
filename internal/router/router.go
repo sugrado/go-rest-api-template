@@ -13,5 +13,16 @@ func New(s *app.Service) *chi.Mux {
 	setMiddlewares(router)
 
 	router.Mount("/api/users", users.SetupRoutes(s.User()))
+	router.Mount("/api/debug", middleware.Profiler()) //pprof
 	return router
+}
+
+func setMiddlewares(r *chi.Mux) {
+	r.Use(cors.Handler(cors.Options{
+		AllowedOrigins:   []string{"https://*", "http://*"}, // yol geçen hanı
+		AllowCredentials: true,
+	}))
+	r.Use(middleware.Logger)
+	r.Use(middleware.Recoverer)
+	//r.Use(cache.New())
 }

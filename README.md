@@ -14,6 +14,6 @@ docker compose --env-file prod.env up
 - Chi
 - Squirrel
 - Ozzo validation or Manual validation
-- Docker/Compose
+- Docker & Compose
 - PostgreSQL
 - Graylog or Zap to file

@@ -2,10 +2,10 @@ package user
 
 import (
 	"context"
-	"fmt"
 	sq "github.com/Masterminds/squirrel"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/sugrado/tama-server/internal/app/users"
+	"github.com/sugrado/tama-server/pkg/logger"
 	"time"
 )
 
@@ -31,7 +31,8 @@ func (s *Repository) Save(firstName, lastName, email string) (int, error) {
 	row := s.pool.QueryRow(ctx, q, firstName, lastName, email)
 	err := row.Scan(&id)
 	if err != nil {
-		return id, fmt.Errorf("could not query users: %w", err)
+		logger.Logger().Error(err.Error())
+		return id, err
 	}
 
 	return id, nil
@@ -49,7 +50,8 @@ func (s *Repository) Find(id int) (*users.User, error) {
 		Where(sq.Eq{"id": id}).ToSql()
 
 	if err != nil {
-		return nil, fmt.Errorf("could not prepare query: %w", err)
+		logger.Logger().Error(err.Error())
+		return nil, err
 	}
 
 	row := s.pool.QueryRow(ctx, rawSql, args...)
@@ -61,7 +63,8 @@ func (s *Repository) Find(id int) (*users.User, error) {
 		&user.LastName,
 		&user.Email,
 	); err != nil {
-		return nil, fmt.Errorf("could not query prepare query: %w", err)
+		logger.Logger().Error(err.Error())
+		return nil, err
 	}
 
 	return &user, nil

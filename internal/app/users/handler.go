@@ -4,18 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/sugrado/tama-server/internal/api"
+	"github.com/sugrado/tama-server/pkg/custom_errors"
 	"net/http"
 	"strconv"
 )
 
-var (
-	user User
-)
-
 func getHandler(s Service) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		myArr := []string{"adana", "ankara", "istanbul"}
-		fmt.Println(myArr[65])
 		id, err := strconv.Atoi(r.FormValue("id"))
 		if err != nil {
 			api.ResponseJSON(w, http.StatusBadRequest, err.Error())
@@ -23,7 +18,7 @@ func getHandler(s Service) func(w http.ResponseWriter, r *http.Request) {
 		}
 		u, err := s.Get(id)
 		if err != nil {
-			api.ResponseJSON(w, http.StatusBadRequest, err.Error())
+			api.HandleError(err, w)
 			return
 		}
 		api.ResponseJSON(w, http.StatusOK, u)
@@ -32,13 +27,18 @@ func getHandler(s Service) func(w http.ResponseWriter, r *http.Request) {
 
 func postHandler(s Service) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		json.NewDecoder(r.Body).Decode(&user)
+		var user User
+		err := json.NewDecoder(r.Body).Decode(&user)
+		if err != nil {
+			api.HandleError(&custom_errors.ValidationError{Errors: []string{"JSON Body is not valid"}}, w)
+			return
+		}
 		id, err := s.Create(user)
 		if err != nil {
-			json.NewEncoder(w).Encode("Something went wrong...")
+			api.HandleError(err, w)
 			return
 		}
 
-		json.NewEncoder(w).Encode(fmt.Sprintf("User %d successfully created!", id))
+		api.ResponseJSON(w, http.StatusOK, fmt.Sprintf("User %d successfully created!", id))
 	}
 }

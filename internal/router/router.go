@@ -4,8 +4,8 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
-	"github.com/sugrado/tama-server/internal/app"
-	"github.com/sugrado/tama-server/internal/app/users"
+	"github.com/sugrado/go-rest-api-template/internal/app"
+	"github.com/sugrado/go-rest-api-template/internal/app/users"
 )
 
 func New(s *app.Service) *chi.Mux {

@@ -1,9 +1,5 @@
 package custom_errors
 
-import (
-	"strings"
-)
-
 type NotFoundError struct {
 	Message string
 }
@@ -21,11 +17,11 @@ func (e BusinessError) Error() string {
 }
 
 type ValidationError struct {
-	Errors []string
+	Errors string
 }
 
 func (e ValidationError) Error() string {
-	return strings.Join(e.Errors, "\n")
+	return e.Errors
 }
 
 type NotAuthorizedError struct {

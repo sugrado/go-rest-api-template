@@ -2,7 +2,7 @@ package api
 
 import (
 	"errors"
-	"github.com/sugrado/tama-server/pkg/custom_errors"
+	"github.com/sugrado/go-rest-api-template/pkg/custom_errors"
 	"net/http"
 )
 

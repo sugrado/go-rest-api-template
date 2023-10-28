@@ -3,14 +3,15 @@ package storage
 import (
 	"context"
 	"fmt"
-	"github.com/jackc/pgx/v5"
-	"github.com/sugrado/tama-server/pkg/logger"
 	"log/slog"
 	"os"
 
+	"github.com/jackc/pgx/v5"
+	"github.com/sugrado/go-rest-api-template/pkg/logger"
+
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/sugrado/tama-server/internal/config"
-	"github.com/sugrado/tama-server/internal/storage/user"
+	"github.com/sugrado/go-rest-api-template/internal/config"
+	"github.com/sugrado/go-rest-api-template/internal/storage/user"
 )
 
 type Storage struct {

@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   database:
-    container_name: tama-db
+    container_name: go-rest-api-template-db
     image: postgres:15.3
     restart: on-failure
     environment:
@@ -15,12 +15,12 @@ services:
       timeout: 5s
       retries: 20
     volumes:
-      - $HOME/docker/volumes/tama-postgres:/var/lib/postgresql/data
+      - $HOME/docker/volumes/go-rest-api-template-postgres:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
   server:
-    container_name: tama-server
+    container_name: go-rest-api-template
     build: .
     restart: always
     depends_on:

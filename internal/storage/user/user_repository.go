@@ -2,11 +2,12 @@ package user
 
 import (
 	"context"
+	"time"
+
 	sq "github.com/Masterminds/squirrel"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/sugrado/tama-server/internal/app/users"
-	"github.com/sugrado/tama-server/pkg/logger"
-	"time"
+	"github.com/sugrado/go-rest-api-template/internal/app/users"
+	"github.com/sugrado/go-rest-api-template/pkg/logger"
 )
 
 var (

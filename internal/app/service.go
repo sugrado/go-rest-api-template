@@ -1,8 +1,8 @@
 package app
 
 import (
-	"github.com/sugrado/tama-server/internal/app/users"
-	"github.com/sugrado/tama-server/internal/storage"
+	"github.com/sugrado/go-rest-api-template/internal/app/users"
+	"github.com/sugrado/go-rest-api-template/internal/storage"
 )
 
 type Service struct {

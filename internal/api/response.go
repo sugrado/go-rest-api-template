@@ -3,8 +3,9 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/sugrado/tama-server/pkg/logger"
 	"net/http"
+
+	"github.com/sugrado/go-rest-api-template/pkg/logger"
 )
 
 func ResponseJSON(w http.ResponseWriter, code int, payload interface{}) {

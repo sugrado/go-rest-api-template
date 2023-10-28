@@ -1,4 +1,4 @@
-# TAMA Server Application
+# Go Rest API Template
 To run this application 
 on Development environment:
 ```shell

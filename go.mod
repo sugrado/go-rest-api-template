@@ -1,4 +1,4 @@
-module github.com/sugrado/tama-server
+module github.com/sugrado/go-rest-api-template
 
 go 1.21
 

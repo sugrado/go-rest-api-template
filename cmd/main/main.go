@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/sugrado/tama-server/internal/app"
-	"github.com/sugrado/tama-server/internal/config"
-	"github.com/sugrado/tama-server/internal/router"
-	"github.com/sugrado/tama-server/internal/storage"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/sugrado/go-rest-api-template/internal/app"
+	"github.com/sugrado/go-rest-api-template/internal/config"
+	"github.com/sugrado/go-rest-api-template/internal/router"
+	"github.com/sugrado/go-rest-api-template/internal/storage"
 )
 
 func main() {

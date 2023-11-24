@@ -12,25 +12,20 @@ type errorResponseObject struct {
 
 func HandleError(err error, w http.ResponseWriter) {
 	var httpStatusCode int
-	var notFoundError *custom_errors.NotFoundError
-	var businessError *custom_errors.BusinessError
-	var validationError *custom_errors.ValidationError
-	var notAuthorizedError *custom_errors.NotAuthorizedError
-	var forbiddenError *custom_errors.ForbiddenError
 	switch {
-	case errors.As(err, &notFoundError):
+	case errors.Is(err, &custom_errors.NotFoundError{}):
 		httpStatusCode = http.StatusNotFound
 		break
-	case errors.As(err, &businessError):
+	case errors.Is(err, &custom_errors.BusinessError{}):
 		httpStatusCode = http.StatusBadRequest
 		break
-	case errors.As(err, &validationError):
+	case errors.Is(err, &custom_errors.ValidationError{}):
 		httpStatusCode = http.StatusBadRequest
 		break
-	case errors.As(err, &notAuthorizedError):
+	case errors.Is(err, &custom_errors.UnauthorizedError{}):
 		httpStatusCode = http.StatusUnauthorized
 		break
-	case errors.As(err, &forbiddenError):
+	case errors.Is(err, &custom_errors.ForbiddenError{}):
 		httpStatusCode = http.StatusForbidden
 		break
 	default:

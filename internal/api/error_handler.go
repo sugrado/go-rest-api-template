@@ -22,7 +22,7 @@ func HandleError(err error, w http.ResponseWriter) {
 	case errors.Is(err, &custom_errors.ValidationError{}):
 		httpStatusCode = http.StatusBadRequest
 		break
-	case errors.Is(err, &custom_errors.UnauthorizedError{}):
+	case errors.Is(err, &custom_errors.NotAuthorizedError{}):
 		httpStatusCode = http.StatusUnauthorized
 		break
 	case errors.Is(err, &custom_errors.ForbiddenError{}):
